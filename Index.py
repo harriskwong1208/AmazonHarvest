@@ -11,5 +11,10 @@ headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 page = requests.get(URL, headers=headers)
 
 soup1 = BS(page.content, "html.parser")
+soup2 = BS(soup1.prettify(),"html.parser")
 
-print(soup1)
+title = soup2.find(id="productTitle").get_text()
+
+# price = soup2.find_all("div", {"class": "a-section a-spacing-none aok-align-center aok-relative"})
+print(title)
+# print(price)
