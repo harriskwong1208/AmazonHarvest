@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as BS
 import time 
 import datetime
 import smtplib
@@ -10,3 +10,6 @@ headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 
 page = requests.get(URL, headers=headers)
 
+soup1 = BS(page.content, "html.parser")
+
+print(soup1)
