@@ -15,6 +15,11 @@ soup2 = BS(soup1.prettify(),"html.parser")
 
 title = soup2.find(id="productTitle").get_text()
 
-# price = soup2.find_all("div", {"class": "a-section a-spacing-none aok-align-center aok-relative"})
-print(title)
-# print(price)
+price = soup2.find_all("div", {"class": "a-section a-spacing-none aok-align-center aok-relative"})
+price = price[0].get_text()
+price = price.replace(" ","")
+price = price.replace("\n","")
+price = price.split("$")
+price = '$'+ price[1]
+print(title.strip())
+print(price)
