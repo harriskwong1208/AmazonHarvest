@@ -4,7 +4,7 @@ import datetime
 import smtplib
 import requests
 import csv
-
+import pandas as pd
 
 URL = 'https://www.amazon.com/Funny-Data-Systems-Business-Analyst/dp/B07FNW9FGJ/ref=sr_1_3?dchild=1&keywords=data%2Banalyst%2Btshirt&qid=1626655184&sr=8-3&customId=B0752XJYNL&th=1'
 
@@ -25,13 +25,20 @@ price = price.split("$")
 price = '$'+ price[1]
 price = price.strip()[1:]
 
+today = datetime.date.today()
 
 # print(title)
 # print(price)
 
-header = ['Title','Price']
-data = [title,price]
+header = ['Title','Price','Date']
+data = [title,price,today]
+
+#Create or write to excel file with title and price data and headers
 with open('AmazonHarvest.csv','w',newline='',encoding='UTF8') as f:
     writer = csv.writer(f)
     writer.writerow(header)
     writer.writerow(data)
+
+
+df = pd.read_csv('AmazonHarvest.csv')
+print(df)
